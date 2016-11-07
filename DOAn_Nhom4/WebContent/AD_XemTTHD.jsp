@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+             <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -25,348 +27,46 @@ body {
 </head>
 <body>
     <jsp:include page= "HeaderAD.jsp"></jsp:include>
-  <span class="label label-primary">THÔNG TIN HỘI ĐỒNG</span>
-  <div class="row">
-  <div class="col-md-10"></div>
-  <div class="col=md-2">  <a href="ADprofile.jsp"><button type="button" class="btn btn-brimary">Trở về
-      <span class="glyphicon glyphicon-circle-arrow-left"></span></button></a>
-  </div>
-    <div class="row">
-        <div class="col-md-12 ">
-          <table class="table table-bordered">
-            <br>
-            <thead>
-              <tr>
-                <th style="color:white">Địa Điểm</th>
-                <th style="color:white">Từ giờ</th>
-                <th style="color:white">Đến giờ</th>
-                <th style="color:white">Chủ tịch</th>
-                <th style="color:white">Ủy viên 1</th>
-                <th style="color:white">Ủy viên 2</th>
-                <th style="color:white">Ủy viên 3</th>
-                <th style="color:white">Thư Kí</th>
-                <th style="color:white">Danh sách đề tài</th>
-              </tr>
-            </thead>
+    <sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+  <sql:query var="tthd" sql="select * from tthoidong" dataSource="${con}"/>
+  <div class="container">
+                     <div class="row"> 
+                    
+                     
+                       <div class="panel-heading" style="color: #FF0000"><h3>Thông Tin Hội Đồng</h3></div>
+                              <div class="panel-body">
+                                  <table class="table table-bordered "  id="Thông tin hội đồng">
+                                      <thead>
+                                       <tr>
+                                       <th>STT</th>
+                                        <th>Địa Điểm</th>
+                                        <th>Từ giờ</th>
+                                        <th>Đến giờ</th>
+                                        <th>Chủ tịch</th>
+                                        <th>Ủy viên 1</th>
+                                        <th>Ủy viên 2</th>
+                                        <th>Ủy viên 3</th>
+                                        <th>Thư Kí</th>
+                                        <th>Mã đề tài</th>
+                                    </tr>
+                               <c:forEach var="rows" items="${tthd.rows}">
+                                <tr>
+	                             <td>${rows.STT }</td>
+	                             <td> ${rows.DiaDiem}</td>
+	                             <td> ${rows.StartTime}</td>
+	                             <td> ${rows.EndTime }</td>
+	                             <td> ${rows.ChuTich }</td>
+	                             <td> ${rows.UyVien1 }</td>
+	                              <td> ${rows.UyVien2 }</td>
+	                               <td> ${rows.UyVien3}</td>
+	                                <td> ${rows.ThuKy }</td>
+	                                 <td> ${rows.MaDeTai }</td>
+	                       </tr>
+                         </thead>
+                           </c:forEach>
             <tbody>
               <tr>
-                <td rowspan="4">A503</td>
-                <td>7h</td>
-                <td>7h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>7h30</td>
-                <td>8h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-                
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>3.</td>
-              <tr>
-                
-                <td>8h30</td>
-                <td>9h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>4.</td>
-              </tr>
-              <tr>
-                <td rowspan="2">A301</td>
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>8h30</td>
-                <td>9h</td>
-                <td></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-            </tbody>
-             <tbody>
-              <tr>
-                <td rowspan="4">A503</td>
-                <td>7h</td>
-                <td>7h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>7h30</td>
-                <td>8h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-                
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>3.</td>
-              <tr>
-                
-                <td>8h30</td>
-                <td>9h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>4.</td>
-              </tr>
-              <tr>
-                <td rowspan="2">A301</td>
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>8h30</td>
-                <td>9h</td>
-                <td></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-            </tbody>
-             <tbody>
-              <tr>
-                <td rowspan="4">A503</td>
-                <td>7h</td>
-                <td>7h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>7h30</td>
-                <td>8h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-                
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>3.</td>
-              <tr>
-                
-                <td>8h30</td>
-                <td>9h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>4.</td>
-              </tr>
-              <tr>
-                <td rowspan="2">A301</td>
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>8h30</td>
-                <td>9h</td>
-                <td></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-            </tbody>
-             <tbody>
-              <tr>
-                <td rowspan="4">A503</td>
-                <td>7h</td>
-                <td>7h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>7h30</td>
-                <td>8h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-                
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>3.</td>
-              <tr>
-                
-                <td>8h30</td>
-                <td>9h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>4.</td>
-              </tr>
-              <tr>
-                <td rowspan="2">A301</td>
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>8h30</td>
-                <td>9h</td>
-                <td></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-            </tbody>
-             <tbody>
-              <tr>
-                <td rowspan="4">A503</td>
-                <td>7h</td>
-                <td>7h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>7h30</td>
-                <td>8h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
-                
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>3.</td>
-              <tr>
-                
-                <td>8h30</td>
-                <td>9h</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>4.</td>
-              </tr>
-              <tr>
-                <td rowspan="2">A301</td>
-                <td>8h</td>
-                <td>8h30</td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>1.</td>
-              </tr>
-              <tr>
-                <td>8h30</td>
-                <td>9h</td>
-                <td></td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td>2.</td>
-              </tr>
+
             </tbody>
           </table>
         </div>

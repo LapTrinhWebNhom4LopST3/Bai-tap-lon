@@ -46,7 +46,7 @@ img {
                        </div>
                     <ul class="nav navbar-nav navbar-right">
                       <li><a href="TK_ThongTinTaiKhoan.jsp"><span class="glyphicon glyphicon-home"></span><h style="color:blue">TK_Home</a></li>
-                       <li><a href="TrangChu.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
+                       <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
                     </ul>
                 </div>
              </nav>

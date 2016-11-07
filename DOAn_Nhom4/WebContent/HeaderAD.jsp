@@ -44,7 +44,7 @@ img {
                          <a class="navbar-brand" href="ADprofile.jsp"><h style="color:blue">Trang chủ</a>
                        </div>
                     <ul class="nav navbar-nav navbar-right">
-                       <li><a href="TrangChu.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
+                       <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
                     </ul>
                 </div>
              </nav>
