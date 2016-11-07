@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -103,15 +105,19 @@ body {
 </head>
 <body>
 <jsp:include page= "HeaderGV.jsp"></jsp:include>
+<sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+ <sql:query var="dt" sql="select * from detai" dataSource="${con}"/>
+  <sql:query var="tthd" sql="select * from tthoidong" dataSource="${con}"/>
       <div class="container">
-                     <div class="row">
+                     <div class="row"> 
                      <div id="flip2"> <h4>Xem thông tin hội đồng</h4> </div>
-                      <div id="panel2" style="border:1px solid black;height:400px;overflow:scroll">
+                      <div id="panel2" style="border:1px solid black;height:500px;overflow:scroll">
                        <div class="panel-heading" style="color: #FF0000"><h3>Thông Tin Hội Đồng</h3></div>
                               <div class="panel-body">
                                   <table class="table table-bordered "  id="Thông tin hội đồng">
                                       <thead>
                                        <tr>
+                                       <th>STT</th>
                                         <th>Địa Điểm</th>
                                         <th>Từ giờ</th>
                                         <th>Đến giờ</th>
@@ -120,22 +126,23 @@ body {
                                         <th>Ủy viên 2</th>
                                         <th>Ủy viên 3</th>
                                         <th>Thư Kí</th>
-                                        <th>Tên đề tài</th>
-                                  </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                            <td>A202</td>
-                                            <td>7h</td>
-                                            <td>8h</td>
-                                            <td>Nguyễn Văn A</td>
-                                            <td>Trần Văn C</td>
-                                            <td>Nguyễn Thị K</td>
-                                            <td>Trần Thị M</td>
-                                            <td>Võ Thị TV</td>
-                                            <td>Kết nối máy tính</td>
-                                        </tr>
-                                      </tbody>
+                                        <th>Mã đề tài</th>
+                                    </tr>
+                               <c:forEach var="rows" items="${tthd.rows}">
+                                <tr>
+	                             <td>${rows.STT }</td>
+	                             <td> ${rows.DiaDiem}</td>
+	                             <td> ${rows.StartTime}</td>
+	                             <td> ${rows.EndTime }</td>
+	                             <td> ${rows.ChuTich }</td>
+	                             <td> ${rows.UyVien1 }</td>
+	                              <td> ${rows.UyVien2 }</td>
+	                               <td> ${rows.UyVien3}</td>
+	                                <td> ${rows.ThuKy }</td>
+	                                 <td> ${rows.MaDeTai }</td>
+	                       </tr>
+                         </thead>
+                           </c:forEach>
                                 </table>
                                 
                               </div>
@@ -147,39 +154,40 @@ body {
                 <div class="row">
                     
 
-                <div class="col-md-5 ">
-                               <div id="flip"><h4>Xem thông tin khóa luận</h4></div>
+             
+               	<div id="flip"><h4>Xem thông tin khóa luận</h4></div>
                 <div id="panel" style="border:1px solid black;height:500px;overflow:scroll">
               
                         <div class="panel-heading" style="color: #FF0000"><h3>Thông Tin Đề Tài</h3></div>
                         <div class="panel-body">
                             <table class="table table-bordered " id="Thông tin đề tài">
                                   <thead>
-                                    <tr>
-                                        <th>Tên Đề Tài</th>
-                                        <th>Chuyên Ngành</th>
-                                         <th>Họ tên SV</th>
-                                        <th>Mã Sinh Viên</th>
-                                        <th>Giáo Viên Hướng Dẫn</th>
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Kết nối các máy tính</td>
-                                        <td>Mạng máy tính</td>
-                                        <td>Võ A</td>
-                                        <td>14110233-14110003</td>
-                                        <td>Nguyễn Văn A</td>
-                                    </tr>
-
-                                </tbody>
+                                     <tr>
+                               <th>Số thứ tự</th>
+                               <th>Mã Đề Tài</th>
+                              <th>Tên đề tài</th>
+                              <th>GVHD</th>
+                              <th>Chuyên ngành</th>
+                               <th>MSSV</th>
+                               <th>Họ tên sinh viên</th>
+                              <th width="100">
+                              <c:forEach var="rows" items="${dt.rows}">
+                                <tr>
+	                             <td>${rows.idDT }</td>
+	                             <td> ${rows.MaDeTai}</td>
+	                             <td> ${rows.TenDeTai}</td>
+	                             <td> ${rows.GVHD }</td>
+	                             <td> ${rows.ChuyenNganh }</td>
+	                             <td> ${rows.MSSV }</td>
+	                             <td> ${rows.TenSV }</td>
+	                       </tr>
+                         </thead>
+                           </c:forEach>
                              </table>
                       </div>
                 </div>
                 </div>
-                <div class="col-md-7">
-                        
+                         <br>
                      <div class="row">
                      <div id="flip1"> <h4>Tìm kiếm hội đồng</h4></div>
                       <div id="panel1" style="border:1px solid black;height:500px;overflow:scroll">
@@ -195,6 +203,7 @@ body {
                                            <option>Thời điểm</option>
                                      </select>
                              </div>
+                                      <br>
                             <div class="col-md-2">
                             <input type="tgkt" class="form-control" id="tgkt">
                             </div>

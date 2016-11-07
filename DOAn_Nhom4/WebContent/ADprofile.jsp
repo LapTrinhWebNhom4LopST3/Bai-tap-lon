@@ -35,30 +35,32 @@ body {
                                <a href="TrangChu.jsp" ><h class="list-group-item" style="color:blue">Đăng xuất</h> </a>         
          </div>
           
-           <div class="sidebar col-md-9 col-sm-4 col-xs-12">
-              <div class="sidebar-item">
+           <div class="col-md-9">
+             <div class="panel panel-primary">
              
-                    <span class="label label-primary">Danh sách tài khoản</span>
+                   <!-- <div id="panel1" style="border:1px solid black;height:500px;overflow:scroll"> --> 
+                       <div class="panel-heading" style="color: while"><h3>Danh sách tài khoản</h3></div>
+                                        <div class="row">
+                             <div class=" col-md-12"> 
                       <table class="table table-bordered">
                           <thead>
                               <tr>
-                                <th><h style="color:white">STT</th>
-                                <th><h style="color:white">Tên tài khoản</th>
-                                <th><h style="color:white">Loại tài khoản</th>
-                                <th><h style="color:white">Email</th>
-
-                                <th><h style="color:white">Ngày tham gia</th>
+                                <th>STT</th>
+                                <th>Tên tài khoản</th>
+                                <th>Loại tài khoản</th>
+                                <th>Email</th>
+                                <th>Ngày tham gia</th>
                             
                              
                               </tr>
                           </thead>
                           <tbody>
                             <tr>
-                              <td><h style="color:white">1</td>
-                              <td><h style="color:white">svit14</td>
-                              <td><h style="color:white">sinh viên</td>
-                              <td><h style="color:white">vttv@gmail.com</td>
-                              <td><h style="color:white">24/9/2016</td>   
+                              <td>1</td>
+                              <td>svit14</td>
+                              <td>sinh viên</td>
+                              <td>vttv@gmail.com</td>
+                              <td>24/9/2016</td>   
                             
                             </tr>
                           </tbody>
@@ -95,7 +97,7 @@ body {
           <br>
           <br>
           <br>
-          <footer><h style="color:white"> Copyright DevWeb.com</footer>         
+          <footer><h style="color:white"> LTW</footer>         
         </div>
       </div>
     </footer>

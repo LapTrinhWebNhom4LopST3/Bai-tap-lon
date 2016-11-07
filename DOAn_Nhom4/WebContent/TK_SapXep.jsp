@@ -66,7 +66,8 @@ body {
           </div>
           <div class="col-md-2 " >
                         <select class="form-control ">
-                            <option>Ngày</option>
+                        	<option>Ngày</option>
+                            <option>26-10-2016</option>
                         </select>
           </div>
           <br>
@@ -85,12 +86,12 @@ body {
                     <th>Ủy viên 2</th>
                     <th>Ủy viên 3</th>
                     <th>Thư Kí</th>
-                    <th>Tên Sinh Viên</th>
+                    <th>Tên Đề Tài</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td rowspan="4">A503</td>
+                    <td rowspan="4">A111</td>
                     <td>7h</td>
                     <td>7h30</td>
                     <td> 
@@ -135,7 +136,15 @@ body {
 					  <option>Tên GV 5</option>					  
 					</select>
 				   </td>
-				   <td>1</td>
+				  <td> 
+                    <select class="form-control" col-md-1>
+					  <option>Tên ĐT 1</option>
+					  <option>Tên ĐT 2</option>
+					  <option>Tên ĐT 3</option>
+					  <option>Tên ĐT 4</option>
+					  <option>Tên ĐT 5</option>					  
+					</select>
+				   </td>
                   <tr>
                     <td>7h30</td>
                     <td>8h</td>
@@ -170,12 +179,57 @@ body {
                     <td rowspan="2">A103</td>
                     <td>8h</td>
                     <td>8h30</td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td>5.</td>
+                    <td> 
+                  <select class="form-control" col-md-1>
+					  <option>Tên GV 1</option>
+					  <option>Tên GV 2</option>
+					  <option>Tên GV 3</option>
+					  <option>Tên GV 4</option>
+					  <option>Tên GV 5</option>
+					</select></td>
+                    </td>
+                    <td>
+                   <select class="form-control" col-md-1>
+					  <option>Tên GV 1</option>
+					  <option>Tên GV 2</option>
+					  <option>Tên GV 3</option>
+					  <option>Tên GV 4</option>
+					  <option>Tên GV 5</option>
+					</select></td>
+                    <td> 
+                    <select class="form-control" col-md-1>
+					  <option>Tên GV 1</option>
+					  <option>Tên GV 2</option>
+					  <option>Tên GV 3</option>
+					  <option>Tên GV 4</option>
+					  <option>Tên GV 5</option>
+					</select></td>
+                    <td> 
+                    <select class="form-control" col-md-1>
+					  <option>Tên GV 1</option>
+					  <option>Tên GV 2</option>
+					  <option>Tên GV 3</option>
+					  <option>Tên GV 4</option>
+					  <option>Tên GV 5</option>
+					</select></td>
+                    <td> 
+                    <select class="form-control" col-md-1>
+					  <option>Tên GV 1</option>
+					  <option>Tên GV 2</option>
+					  <option>Tên GV 3</option>
+					  <option>Tên GV 4</option>
+					  <option>Tên GV 5</option>					  
+					</select>
+				   </td>
+                    <td> 
+                    <select class="form-control" col-md-1>
+					  <option>Tên ĐT 1</option>
+					  <option>Tên ĐT 2</option>
+					  <option>Tên ĐT 3</option>
+					  <option>Tên ĐT 4</option>
+					  <option>Tên ĐT 5</option>					  
+					</select>
+				   </td>
                   </tr>
                 </tbody>
               </table>

@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"    
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,6 +31,10 @@ body {
 </style>
 </head>
 <body>
+
+<sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+ <sql:query var="result" sql="select * from detai" dataSource="${con}"/>
+ 
 <jsp:include page= "HeaderTK.jsp"></jsp:include>
  <nav class="navbar navbar col-md-offset-0">
         <div class="container">
@@ -209,15 +215,29 @@ body {
                       <thead>
                           <tr>
                                <th>Số thứ tự</th>
+                               <th>Mã Đề Tài</th>
                               <th>Tên đề tài</th>
                               <th>GVHD</th>
                               <th>Chuyên ngành</th>
                                <th>MSSV</th>
                                <th>Họ tên sinh viên</th>
                               <th width="100">
-                          </tr>
+                              <c:forEach var="rows" items="${result.rows}">
+                                <tr>
+	                             <td>${rows.idDT }</td>
+	                             <td> ${rows.MaDeTai}</td>
+	                             <td> ${rows.TenDeTai}</td>
+	                             <td> ${rows.GVHD }</td>
+	                             <td> ${rows.ChuyenNganh }</td>
+	                             <td> ${rows.MSSV }</td>
+	                             <td> ${rows.TenSV }</td>
+	                       </tr>
+                         </thead>
+                           </c:forEach>
+                          </tr>     
                       </thead>
                       <tbody>
+                       
                           <tr ng-repeat="u in ctrl.users">
                               <td><span ng-bind="u.STT"></span></td>
                               <td><span ng-bind="u.IDname"></span></td>
@@ -238,7 +258,7 @@ body {
       </script>  
       <script>
           angular.module('myApp', [])
-          .controller('AppController', ['$scope', function($scope) {
+          app.controller('AppController', ['$scope', function($scope) {
               var self = this;
               self.user={STT:null,IDname:'',username:'',work:'',IDSV:'',NameSV:''};
               self.STT = 6;

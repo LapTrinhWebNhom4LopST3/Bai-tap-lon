@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -32,7 +32,8 @@ body {
 </head>
 <body>
 <sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
- <sql:query var="result" sql="select * from ds_giangvien" dataSource="${con}"/>
+ <sql:query var="result" sql="select * from giangvien" dataSource="${con}"/>
+ 
 <jsp:include page= "HeaderTK.jsp"></jsp:include>
  <nav class="navbar navbar col-md-offset-0">
         <div class="container">
@@ -148,7 +149,14 @@ body {
                               </div>
                           </div>
                       </div>
- 
+						<tr>
+						      <td>&nbsp;</td>
+						      <td>
+						      	<input type="submit" name="btnInsert" id="btnInsert" value="Insert" />
+						      	<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" />
+						      	<input type="submit" name="btnDelete" id="btnDelete" value="Delete" />
+						      </td>
+						    </tr>
                       <div class="row">
                             <div class="col-md-offset-10">
                               <input type="submit"  value="{{!ctrl.user.STT ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -168,18 +176,15 @@ body {
                                <th>Số thứ tự</th>
                               <th>Mã giảng viên</th>
                               <th>Tên giảng viên</th>
-                              <th>Chuyên ngành</th>
-                              
-                          </tr>
+                              <th>Chuyên ngành</th>          					
                           <c:forEach var="rows" items="${result.rows}">
-                      		
                           	<tr>
-	                             <td>${rows.STT }</td>
+	                             <td>${rows.idGV }</td>
 	                             <td> ${rows.MaGV }</td>
 	                             <td> ${rows.TenGV }</td>
 	                             <td> ${rows.ChuyenNganh }</td>
+	                             
 	                       </tr>
-	                       
                          </thead>
                        
                         </c:forEach>

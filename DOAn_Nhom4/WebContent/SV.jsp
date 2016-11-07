@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -25,10 +27,12 @@ body {
 </head>
 <body>
 <jsp:include page= "HeaderSV.jsp"></jsp:include>
-
+<sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+ <sql:query var="ttkl" sql="select * from detai" dataSource="${con}"/>
+  <sql:query var="tthd" sql="select * from tthoidong" dataSource="${con}"/>
  <div class="container">
    <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
          <!-- <div class="panel panel-default"> -->
          <div class="panel panel-primary">
             <div class="panel-heading">Thông Tin Khóa Luận</div>
@@ -36,25 +40,26 @@ body {
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>Tên Đề Tài</th>
-                      <th>Chuyên Ngành</th>
+                      <th>STT</th>
                       <th>Mã Sinh Viên</th>
+                      <th>Tên  Sinh Viên</th>
+                      <th>Mã Đề Tài</th>
+                        <th>Tên Đề Tài</th>
                       <th>Giáo Viên Hướng Dẫn</th>  
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Kết nối các máy tính</td>
-                      <td>Mạng máy tính</td>
-                      <td>14110233-14110003</td>
-                      <td>Nguyễn Văn A</td>
-                    </tr>
-                    <tr>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      <th> </th>
-                      </tr>
+                      <th>Chuyên Ngành</th>
+                      <c:forEach var="rows" items="${ttkl.rows}">
+                   <tr>
+	                             <td>${rows.idDT }</td>
+	                             <td> ${rows.MSSV }</td>
+	                             <td> ${rows.TenSV }</td>
+	                             <td> ${rows.MaDeTai}</td>
+	                             <td> ${rows.TenDeTai}</td>
+	                             <td> ${rows.GVHD }</td>
+	                             <td> ${rows.ChuyenNganh }</td>
+	                             
+	                       </tr>
+                         </thead>
+                           </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -62,32 +67,40 @@ body {
         </div> 
 <!-- thong tin hoi dong -->
 <div class="container"> 
-  <div class="col-md-6">
+  <div class="col-md-12">
        <!--  <div class="panel panel-default"> -->
        <div class="panel panel-primary">
             <div class="panel-heading">Thông Tin Hội Đồng</div>
                 <div class="panel-body">
                     <table class="table table-bordered">
                           <thead>
-                              <tr>
-                            <th>STT</th>
-                            <th>Tên Đề Tài</th>
-                            <th>Mã GV</th>
-                            <th>Tên GV</th>
-                            <th>Vai Trò</th>
-                             <th>Địa Điểm</th>
-                            <th>Thời Gian (Ngày giờ)</th>
-                              </tr>
-                              <tr>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                                <th> </th>
-                              </tr>
-                          </thead>
+                             <tr>
+                             			<th>STT</th>
+                                        <th>Địa Điểm</th>
+                                        <th>Từ giờ</th>
+                                        <th>Đến giờ</th>
+                                        <th>Chủ tịch</th>
+                                        <th>Ủy viên 1</th>
+                                        <th>Ủy viên 2</th>
+                                        <th>Ủy viên 3</th>
+                                        <th>Thư Kí</th>
+                                        <th>Mã đề tài</th>
+                                  </tr>
+                               <c:forEach var="rows" items="${tthd.rows}">
+                                <tr>
+	                             <td>${rows.STT }</td>
+	                             <td> ${rows.DiaDiem}</td>
+	                             <td> ${rows.StartTime}</td>
+	                             <td> ${rows.EndTime }</td>
+	                             <td> ${rows.ChuTich }</td>
+	                             <td> ${rows.UyVien1 }</td>
+	                              <td> ${rows.UyVien2 }</td>
+	                               <td> ${rows.UyVien3}</td>
+	                                <td> ${rows.ThuKy }</td>
+	                                 <td> ${rows.MaDeTai }</td>
+	                       </tr>
+                         </thead>
+                           </c:forEach>
                     </table>
                 </div>
         </div>
