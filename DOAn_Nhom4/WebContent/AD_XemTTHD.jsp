@@ -27,7 +27,7 @@ body {
 </head>
 <body>
     <jsp:include page= "HeaderAD.jsp"></jsp:include>
-    <sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+    <sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/do_an?useUnicode=true&characterEncoding=utf-8" user="root" password="vothithanhvi"/>
   <sql:query var="tthd" sql="select * from tthoidong" dataSource="${con}"/>
   <div class="container">
                      <div class="row"> 
@@ -60,7 +60,7 @@ body {
 	                              <td> ${rows.UyVien2 }</td>
 	                               <td> ${rows.UyVien3}</td>
 	                                <td> ${rows.ThuKy }</td>
-	                                 <td> ${rows.MaDeTai }</td>
+	                                 <td> ${rows.TenDeTai }</td>
 	                       </tr>
                          </thead>
                            </c:forEach>

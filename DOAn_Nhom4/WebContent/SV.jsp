@@ -27,7 +27,7 @@ body {
 </head>
 <body>
 <jsp:include page= "HeaderSV.jsp"></jsp:include>
-<sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/do_an" user="root" password="6796"/>
+<sql:setDataSource var ="con" driver ="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/do_an?useUnicode=true&characterEncoding=utf-8" user="root" password="vothithanhvi"/>
  <sql:query var="ttkl" sql="select * from detai" dataSource="${con}"/>
   <sql:query var="tthd" sql="select * from tthoidong" dataSource="${con}"/>
  <div class="container">
@@ -40,19 +40,21 @@ body {
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>STT</th>
-                      <th>Mã Sinh Viên</th>
+               
+                  
                       <th>Tên  Sinh Viên</th>
-                      <th>Mã Đề Tài</th>
+                      <th>Mã Số Sinh Viên
+                      </th>
                         <th>Tên Đề Tài</th>
                       <th>Giáo Viên Hướng Dẫn</th>  
                       <th>Chuyên Ngành</th>
                       <c:forEach var="rows" items="${ttkl.rows}">
                    <tr>
-	                             <td>${rows.idDT }</td>
-	                             <td> ${rows.MSSV }</td>
+	                           
+	                            
 	                             <td> ${rows.TenSV }</td>
-	                             <td> ${rows.MaDeTai}</td>
+	                              <td> ${rows.MSSV }</td>
+	                             
 	                             <td> ${rows.TenDeTai}</td>
 	                             <td> ${rows.GVHD }</td>
 	                             <td> ${rows.ChuyenNganh }</td>
@@ -75,8 +77,8 @@ body {
                     <table class="table table-bordered">
                           <thead>
                              <tr>
-                             			<th>STT</th>
-                                        <th>Địa Điểm</th>
+                             			   <th>Địa Điểm</th>
+                             			   <th>Ngày</th>
                                         <th>Từ giờ</th>
                                         <th>Đến giờ</th>
                                         <th>Chủ tịch</th>
@@ -84,12 +86,14 @@ body {
                                         <th>Ủy viên 2</th>
                                         <th>Ủy viên 3</th>
                                         <th>Thư Kí</th>
-                                        <th>Mã đề tài</th>
+                                 
                                   </tr>
                                <c:forEach var="rows" items="${tthd.rows}">
                                 <tr>
-	                             <td>${rows.STT }</td>
-	                             <td> ${rows.DiaDiem}</td>
+	                         
+	                             
+	                            <td> ${rows.DiaDiem}</td>
+	                             <td> ${rows.Ngay}</td>
 	                             <td> ${rows.StartTime}</td>
 	                             <td> ${rows.EndTime }</td>
 	                             <td> ${rows.ChuTich }</td>
@@ -97,7 +101,7 @@ body {
 	                              <td> ${rows.UyVien2 }</td>
 	                               <td> ${rows.UyVien3}</td>
 	                                <td> ${rows.ThuKy }</td>
-	                                 <td> ${rows.MaDeTai }</td>
+	                              
 	                       </tr>
                          </thead>
                            </c:forEach>

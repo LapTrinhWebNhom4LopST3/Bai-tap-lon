@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ page import="java.sql.*"%>
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -12,6 +15,14 @@
         <title>GV_Sửa Thông Tin Tài Khoản</title> 
     
    <style>
+    <script>
+            function confirmGo(m,u) {
+                if ( confirm(m) ) {
+                    window.location = u;
+                    
+                }
+            }
+        </script>
 #main{margin-left:20px; margin-right:20px;}
 #main form input[type=text], #main form input[type=email], #main form input[type=password]{width: 100%;display: inline}
 </style>
@@ -28,6 +39,7 @@
     }]);
 </script>
   <style>
+ 
 img {
     width: 100%;
     height: auto;
@@ -47,50 +59,94 @@ body {
                     <div class="panel-body">
                       <div class="container">
                            <div class="form-group">
-                               <div id="main" ng-app="demoApp" ng-controller="RegisterCtrl">
-                                  <form class="form-horizontal" name="form" ng-submit="register()" novalidate>  
+                               
+                            <form class="form-horizontal" name="form" >  
+                                         <%
+							Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/do_an?useUnicode=true&characterEncoding=utf-8", "root", "vothithanhvi");
+						String user=(String)session.getAttribute("userid");
+							Statement stmt = conn.createStatement();
+							String sql = "Select  * from user  where uname='"+user+"' ";
+							ResultSet rs1 = stmt.executeQuery(sql);
+							System.out.println(user);
+							 System.out.println(sql);
+							while (rs1.next()) {
+						%>
+						
                                          <div class="form-group">
                                                  <label for="name" class="col-xs-2 control-label required"><h style=color:blue>Tên tài khoản:</h></label>
                                                  <div class="col-md-3">
-                                                <input name="name" type="text" class="form-control" placeholder="Tên tài khoản"  ng-model="name"  ng-minlength="6" ng-maxlength="50" ng-pattern="/^[a-zA-Z]+$/" required>
-                                                <i class="fa fa-check text-success" ng-show="form.name.$dirty && form.name.$valid"></i>
-                                                <div ng-show="form.name.$dirty && form.name.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-                                                <span ng-show="form.name.$error.required">Tên tài khoản không được bỏ trống</span>
-                                                <span ng-show="form.name.$error.minlength">Tên tài khoản phải dài hơn 6 kí tự</span>
-                                                <span ng-show="form.name.$error.maxlength">Tên tài khoản phải ngắn hơn 50 kí tự</span>
-                                                <span ng-show="form.name.$error.pattern">Tên tài khoản chỉ bao gồm các kí tự chữ cái</span>
-                                                </div>
+                                             
+			                                             <input name="name" type="text" class="form-control" placeholder="Tên tài khoản"   value="<%=rs1.getString("uname")%>">
+			                                               
+			                                             <input type="hidden" class="form-control" name="id"  value="<%=rs1.getString("id")%>">
+                                                  
+                                             
                                                 </div>
                                          </div>  
                                          <div class="form-group">
                                                <label for="email" class="col-xs-2 control-label required"><h style=color:blue>Email:</h></label>
                                                 <div class="col-md-3">
-                                                <input name="email" type="email" class="form-control" placeholder="Email" ng-model="email" autocomplete="off" required >
-                                                <i class="fa fa-check text-success" ng-show="form.email.$dirty && form.email.$valid"></i>
-                                                <div ng-show="form.email.$dirty && form.email.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-                                                <span ng-show="form.email.$error.required">Bạn chưa nhập địa chỉ email</span>
-                                                <span ng-show="form.email.$error.email">Không đúng định dạng email</span>
+                                                <input name="email" type="email" value="<%=rs1.getString("email")%>" class="form-control" placeholder="Email"  >
+                                                 <input  type="hidden" name="pass"value="<%=rs1.getString("pass")%>" class="form-control" placeholder="Email"  >
+                                                 <input  type="hidden" name="ngaydk" value="<%=rs1.getString("ngaydk")%>" class="form-control" placeholder="Email"  >
+                                                 <input type="hidden" name="role" value="<%=rs1.getString("role")%>" placeholder="Email"  >
+                                                
                                             </div>
                                         </div>
-                                          </div>
+                                          
                                        <div class="form-group">
                                                <div class="col-md-2 col-md-offset-3">
                                               <div class="col-md-3" style="text-align: left;">
-                                                  <button type="submit" class="btn btn-primary" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Đồng ý</button>
+                                                  <button type="submit" name="dongy" class="btn btn-primary" >Đồng ý</button>
                                               </div>
                                               </div>
                                              <div class="col-md-2 col-md-offset" style="text-align: rignt;">
-                                                  <button type="submit" class="btn btn-primary" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)">Hủy</button>
+                                                  <a href="GV_ThongTinTaiKhoan.jsp"><button type="submit" class="btn btn-primary" >Hủy</button></a>
                                               </div>
                                          </div>
+                                         	<%
+							}
+						%>
+                            
                                   </form>
-                                </div>
+                                               <%
+								if (request.getParameter("dongy")!= null) {
+									
+									String id=request.getParameter("id");
+										String a =  request.getParameter("name");
+										String b = request.getParameter("email");
+										
+										String c = request.getParameter("pass");
+										String d = request.getParameter("ngaydk");
+										String f = request.getParameter("role");
+			
+										try {
+											Class.forName("com.mysql.jdbc.Driver");
+											Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/do_an?useUnicode=true&characterEncoding=utf-8", "root", "vothithanhvi");
+											Statement st = connection.createStatement();
+											String qr=	"update user set  uname='"+a+"', email='"+b+"', pass='"+c+"', ngaydk='"+d+"', role='"+f+"' where id='"+id+"' ";
+											System.out.println(qr);
+												int i=st.executeUpdate(qr);
+												
+												out.println("<script type=\"text/javascript\">");  
+								               	 out.println("alert('Update thành công');"); 
+								               	out.println("</script>"); 
+								               	 RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
+								                 view.forward(request, response);
+								               	 
+										} catch (Exception e) {
+											out.print(e);
+											e.printStackTrace();
+										}
+									} 
+								%>
+                            
                             </div>
                           </div>
                         </div>
                       </div>
                 </div>
-            </div>
+    </div>
 
 </body>
 </html>

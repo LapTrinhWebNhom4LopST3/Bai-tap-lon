@@ -42,10 +42,10 @@ img {
                     <nav class="navbar navbar-inverse">
                      <div class="container-blue">
                         <div class="navbar-header">
-                         <a class="navbar-brand" href="TK.jsp"><h style="color:blue">Trang chủ</a>
+                         <a class="navbar-brand" href="TK_SapXep.jsp"><h style="color:blue">Trang chủ</a>
                        </div>
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="TK_ThongTinTaiKhoan.jsp"><span class="glyphicon glyphicon-home"></span><h style="color:blue">TK_Home</a></li>
+                      <li><a href="TK_ThongTinTaiKhoan.jsp"><span class="glyphicon glyphicon-home"></span><h style="color:blue"><%=(String)session.getAttribute("userid") %></a></li>
                        <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
                     </ul>
                 </div>

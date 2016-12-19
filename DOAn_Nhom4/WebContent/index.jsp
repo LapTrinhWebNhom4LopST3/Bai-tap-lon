@@ -6,8 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="js/jquery-3.1.0.min.js"></script>    
+    <script src="js/jquery-3.1.1.min.js"></script>    
     <script src="js/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="js/angular.min.js"></script>
    <title>Trang Chủ</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
      <link rel="icon" href="img/logo.PNG" type="image/x-icon" />
@@ -19,10 +20,18 @@ img {
     height: auto;
 }
 body {
-    background-image: url("img/bkg3.jpg");
+    background-image: url("img/bkg2.jpg");
 }
 </style>
+ <script>
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            $("#dangNhap").click(function () {
+                $("#myModal").modal();
 
+            });
+        });
+    </script>
 </head>
 <body>
   <img src="img/SPKT.jpg">
@@ -46,8 +55,8 @@ body {
               </style>
               <head>
               <br><br><br><br>
-              <button type="button" class="btn btn-brimary">
-                       <a href="LoginSV.jsp">   <span class="glyphicon glyphicon-log-in"> Đăng nhập</span></a>
+              <button type="button" class="btn btn-brimary" id="dangNhap">
+                          <span class="glyphicon glyphicon-log-in"> Đăng nhập</span>
                           </button>
               <input type="text" placeholder="Nhập từ khóa tìm kiếm" id="q" name="q" value="">
               <button type="button" class="btn btn-brimary">Tìm kiếm
@@ -124,7 +133,7 @@ li a {
               </div>
                     <h2 style="color:white">Giới thiệu</h2><br>
                                 <div class="embed-responsive embed-responsive-4by3">
-                      <iframe class="embed-responsive-item" src="img/videotruong.mp4"></iframe>
+                      <iframe class="embed-responsive-item" src="img/tn.jpg"></iframe>
                     </div>
                      
        
@@ -154,6 +163,60 @@ li a {
 </div>
 </div>
 </div>
+   <!-- Modal đăng nhập-->
+
+
+     
+        <div class="modal fade" id="myModal" role="dialog">
+
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <!-- <div class="row vertical-center-row">  -->
+                  <div class="col-md-10 col-center-block login-widget"> 
+                   <div class="panel panel-primary">
+                <div   class="panel-heading">
+                     <div class="panel-heading"><h4>ĐĂNG NHẬP</h4></div>
+                </div>
+                        <div class="panel-body" >
+                         <body ng-app="">
+                          <form action="login.jsp" method="post" role="form" >
+                		  	<div class="row" style="text-align: center;">
+	               				<div class="form-group">
+	               				
+		                              <label ><input type="radio" ng-model="myVar"  name="box" id="box1" value="sv" checked="checked">Sinh viên </label>
+		                    
+		                                <label ><input type="radio" ng-model="myVar" name="box" id="box2" value="gv">Giảng Viên</label>
+		
+		                                <label><input type="radio" ng-model="myVar" name="box" id="box3"value="tk-tbm">Trưởng Khoa/Bộ Môn </label>
+		                                <label><input type="radio" ng-model="myVar" name="box" id="box3"value="ad">Admin </label>
+        						</div>	
+                         	</div>
+                           
+                                  <div class="form-group">
+                                    <label class="sr-only" for="exampleInputUser">User</label>
+                                    <input type="text" name="username" class="form-control" id="username" placeholder="Tên đăng nhập" required>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
+                                    <input type="password" name="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                                  </div>
+                                 
+                                  <button type="submit" class="btn btn-info pull-right" style="padding-right:20px; padding-left:20px;">Đăng nhập</button>
+                         </body>
+                        </div>
+                  <div>
+			  </div>
+          </div>
+    </div> 
+         </div>
+       </div>
+        </div>
+        </form>
+    
+
+
     <footer>
       <div class="container">
         <div class="footer-info text-center">
@@ -161,7 +224,8 @@ li a {
           <br>
           <br>
           <br>
-          <footer><h style="color:white"> Copyright DevWeb.com</footer>         
+          <footer><h style="color:white">Trường đại học Sư Phạm Kỹ Thuật TP Hồ Chí Minh</footer>    
+            <footer><h style="color:white">Lập trình Wed:nhóm 4_T3</footer>         
         </div>
       </div>
     </footer>

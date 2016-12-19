@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+ <%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -59,102 +64,127 @@ body {
             <div class="panel-body"> 
             <div class="container">
               <div class="form-group">
-           <div id="main" ng-app="demoApp" ng-controller="RegisterCtrl">
-          <form class="form-horizontal" name="form" ng-submit="register()" novalidate>  
+
+          <form class="form-horizontal" >  
 
             <div class="form-group">
                <label for="name" class="col-xs-2 control-label required"><h style=color:blue>Tên tài khoản:</label>
                <div class="col-md-3">
-              <input name="name" type="text" class="form-control" placeholder="Tên tài khoản"  ng-model="name"  ng-minlength="6" ng-maxlength="50" ng-pattern="/^[a-zA-Z]+$/" required>
-              <i class="fa fa-check text-success" ng-show="form.name.$dirty && form.name.$valid"></i>
-              <div ng-show="form.name.$dirty && form.name.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-              <span ng-show="form.name.$error.required">Tên tài khoản không được bỏ trống</span>
-              <span ng-show="form.name.$error.minlength">Tên tài khoản phải dài hơn 6 kí tự</span>
-              <span ng-show="form.name.$error.maxlength">Tên tài khoản phải ngắn hơn 50 kí tự</span>
-              <span ng-show="form.name.$error.pattern">Tên tài khoản chỉ bao gồm các kí tự chữ cái</span>
-              </div>
+              <input name="name" type="text" class="form-control" placeholder="Tên tài khoản" >
+              
               </div>
            </div>        
           <div class="form-group">
              <label for="password" class="col-xs-2 control-label required"><h style=color:blue>Mật khẩu:</label>
              <div class="col-md-3">
-            <input name="password" ng-model="password" type="password" value="" class="form-control" placeholder="Mật khẩu" ng-minlength="6" ng-maxlength="30" required>
-            <i class="fa fa-check text-success" ng-show="form.password.$dirty && form.password.$valid"></i>
-            <div ng-show="form.password.$dirty && form.password.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-            <span ng-show="form.password.$error.required">Mật khẩu không được bỏ trống</span>
-            <span ng-show="form.password.$error.minlength">Mật khẩu phải dài hơn 6 kí tự</span>
-            <span ng-show="form.password.$error.maxlength">Mật khẩu phải ngắn hơn 30 kí tự</span>
-            </div>
+            <input name="pass"  type="password" value="" class="form-control" placeholder="Mật khẩu">
+           
             </div>
          </div>
-          <div class="form-group">
-             <label for="password" class="col-xs-2 control-label required"><h style=color:blue>Nhập lại mật khẩu:</label>
-             <div class="col-md-3">
-            <input name="password" ng-model="password" type="password" value="" class="form-control" placeholder="Mật khẩu" ng-minlength="6" ng-maxlength="30" required>
-            <i class="fa fa-check text-success" ng-show="form.password.$dirty && form.password.$valid"></i>
-            <div ng-show="form.password.$dirty && form.password.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-            <span ng-show="form.password.$error.required">Mật khẩu không được bỏ trống</span>
-          
-            </div>
-            </div>
-         </div>
+      
           <div class="form-group">
                <label for="email" class="col-xs-2 control-label required"><h style=color:blue>Email:</label>
                 <div class="col-md-3">
-                <input name="email" type="email" class="form-control" placeholder="Email" ng-model="email" autocomplete="off" required >
-                <i class="fa fa-check text-success" ng-show="form.email.$dirty && form.email.$valid"></i>
-                <div ng-show="form.email.$dirty && form.email.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>
-                <span ng-show="form.email.$error.required">Bạn chưa nhập địa chỉ email</span>
-                <span ng-show="form.email.$error.email">Không đúng định dạng email</span>
-            </div>
-        </div>
+                <input name="email" type="email" class="form-control" placeholder="Email" >
+               
+      			 </div>
 
           </div>
            <div class="form-group">
             <label for="time" class="col-xs-2 control-label"><h style=color:blue>Ngày tham gia:</label>
              <div class="col-md-3">
-            <input name="time" type="text" ng-model="time" class="form-control" placeholder="dd-mm-yyyy" ng-pattern="/^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((19[0-9]{2})|(20[0-1]{1}[0-4]{1}))$/">
-            <i class="fa fa-check text-success" ng-show="form.time.$dirty && form.time.$valid"></i>
-            <div ng-show="form.time.$dirty && form.time.$invalid" class="text-danger"><i class="fa fa-times text-danger"></i>Nhập ngày sinh theo đúng định dạng dd-mm-yyyy {{time}}</div>
-            </div>
+            <input name="time" type="text"  class="form-control" placeholder="yyyy-mm-dd" >
             </div>
          </div>
         
-           
-   </form>
-</div>
-</div>
-   <div class="row">
-  <div class="col-md-4" style="text-align:right;">          
-     <p><h style=color:red>Loại người dùng:</p><br><br>
-     </div>
-     <div class="col-md-5">
-    <div class="row" style="text-align: left ;">
-     <div class="radio">
-            <div class="radio"><br>
-          <label><input type="radio" name="optradio">Sinh viên</label></div>
-             <div class="radio">
-            <label><input type="radio" name="optradio">Giảng viên</label></div>
-          <div class="radio">
-          <label><input type="radio" name="optradio">Trưởng khoa/Trưởng bộ môn</label></div>
-          <div class="radio">
-          <label><input type="radio" name="optradio">Admin</label></div>
-      </div>                      
-    </div>
-  </div>
-<div class="form-group">
-         <div class="col-md-2 col-md-offset-6">
-        <div class="col-md-3" style="text-align: left;">
-            <button type="submit" class="btn btn-primary" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)"><a href="Ad_profile.html"><h style=color:white>Đồng ý</i></button></a>
-        </div>
-       </div>
-       <div class="col-md-2 col-md-offset-2" style="text-align: center;">
-            <a href="ADprofile"><button type="submit" class="btn btn-primary" ng-disabled="!form.$dirty || (form.$dirty && form.$invalid)"><h style=color:white>Hủy</i></button></a>
-        </div>
-        </div>
-       </div>
-  </div>
-</div>
+            <div class="form-group">
+				  <div class="col-md-2" style="text-align:right;">          
+				     <p><h style=color:red>Loại người dùng:</p><br><br>
+				     </div>
+				     <div class="col-md-5">
+				    <div class="row" style="text-align: left ;">
+				     <div class="radio">
+				            <div class="radio"><br>
+				          <label><input type="radio" name="box"id="box1"value="sv" checked="checked">Sinh viên</label></div>
+				             <div class="radio">
+				            <label><input type="radio" name="box" id="box2"value="gv" >Giảng viên</label></div>
+				          <div class="radio">
+				          <label><input type="radio" name="box" id="box3"value="tk-tbm">Trưởng khoa/Trưởng bộ môn</label></div>
+				          <div class="radio">
+				          <label><input type="radio" name="box"id="box4"value="ad">Admin</label></div>
+				      </div>                      
+				    </div>
+				  </div>
+				<div class="form-group">
+				         <div class="col-md-5 col-md-offset-4">
+				        <div class="col-md-2" style="text-align: left;">
+				              <button type="submit"  name="submit" class="btn btn-primary" >Đồng ý</button>
+				        	</div>
+				        	  <div class="col-md-2 col-md-offset-1" style="text-align: center;">
+				            <a href="ADprofile.jsp"><button  class="btn btn-primary" ><h style=color:white>Hủy</i></button></a>
+				        </div>
+				        </div>
+				       </div>
 
+     
+        </div>
+   </form>
+   <%	if (request.getParameter("submit") != null) {
+										
+										String a =  request.getParameter("name");
+										String b = request.getParameter("pass");
+										String c = request.getParameter("email");
+										String d = request.getParameter("time");
+										String rl= request.getParameter("box");
+										try {
+											Class.forName("com.mysql.jdbc.Driver");
+											Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/do_an?useUnicode=true&characterEncoding=utf-8", "root", "vothithanhvi");
+											Statement st = connection.createStatement();
+											 if(rl.equals("sv")){
+											int i1 = st.executeUpdate(
+													"insert into user (uname,pass,email,ngaydk,role)  values('"+a+"','"+b+"','"+c+"','"+d+"','sv')");
+											%>
+											<script>
+											alert('Tạo tài khoản mới thành công')</script>
+											<%
+											 } 
+											 if(rl.equals("tk-tbm")){
+													int i1 = st.executeUpdate(
+															"insert into user (uname,pass,email,ngaydk,role)  values('"+a+"','"+b+"','"+c+"','"+d+"','tk-tbm')");
+													%>
+													<script>
+													alert('Tạo tài khoản mới thành công')</script>
+													<%
+											} 
+											 if(rl.equals("gv")){
+													int i1 = st.executeUpdate(
+															"insert into user (uname,pass,email,ngaydk,role)  values('"+a+"','"+b+"','"+c+"','"+d+"','gv')");
+													%>
+													<script>
+													alert('Tạo tài khoản mới thành công')</script>
+													<%
+											} 
+											 if(rl.equals("ad")){
+													int i1 = st.executeUpdate(
+															"insert into user (uname,pass,email,ngaydk,role)  values('"+a+"','"+b+"','"+c+"','"+d+"','ad')");
+													%>
+													<script>
+													alert('Tạo tài khoản mới thành công')</script>
+													<%
+											} 
+										} catch (Exception e) {
+											out.print(e);
+											e.printStackTrace();
+										}
+									}
+								%>
+
+</div>
+  
+       </div>
+  </div>
+</div>
+	</div>
+	</div>					
 </body>
 </html>

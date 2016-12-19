@@ -45,7 +45,7 @@ img {
                          <a class="navbar-brand" href="SV.jsp"><h style="color:blue">Trang chủ</a>
                        </div>
                     <ul class="nav navbar-nav navbar-right">
-                      <li><a href="SV_ThongTinTaiKhoan.jsp"><span class="glyphicon glyphicon-home"></span><h style="color:blue">SV_Home</a></li>
+                      <li><a href="SV_ThongTinTaiKhoan.jsp"><span class="glyphicon glyphicon-home"></span><h style="color:blue"><%=(String)session.getAttribute("userid") %></a></li>
                        <li><a href="index.jsp"><span class="glyphicon glyphicon-log-out"></span><h style="color:blue">Đăng xuất</a></li>
                     </ul>
                 </div>
